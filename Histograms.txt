@@ -1,0 +1,340 @@
+Histograms:
+-----------
+Frequency Distribution===>It is nothing but number of observations in the given interval.
+
+To represent such type of frequency distributions, we should go for histogram.
+eg-1:
+
+300 students  (marks : 0 to 100)
+
+23 students got marks in the range: 0 to 34
+120 students got marks in the range: 35 to 49
+47 students got marks in the range: 50 to 59
+80 students got marks in the range: 60 to 79
+30 students got marks in the range: 80 to 100
+
+We distributed 300 values in 5 intervals.
+
+eg-2: 
+We are conducting an experiment, where we are trying to roll 3 dicesone lakh times.
+Every time the sum of outcome of 3 dices will be appended to the list.To analyze these 1 lakh values from the list, it is very difficult. If we convert this into visualization form then it is very easy.
+
+For every dice throw, the minimum value: 1 and maximum value: 6
+The minimum outcome is 3 and maximum outcome is 18.
+Total possible outcomes: 3 to 18 means 16 possible outcomes are there.
+
+total outcome: 18,15,12,13,16,13,5,9,4,7,6
+
+1 lakh values should be distributed into 16 intervals
+  9 to 12
+
+
+import numpy as np
+import time
+while True:
+	d1 = np.random.randint(1,7)
+	d2 = np.random.randint(1,7)
+	d3 = np.random.randint(1,7)
+	print(f'{d1} + {d2} + {d3} = {d1+d2+d3}')
+	time.sleep(3)
+
+4 + 6 + 5 = 15
+5 + 3 + 3 = 11
+3 + 6 + 5 = 14
+5 + 6 + 1 = 12
+5 + 4 + 2 = 11
+4 + 1 + 3 = 8
+5 + 4 + 1 = 10
+4 + 4 + 5 = 13
+4 + 6 + 4 = 14
+5 + 3 + 2 = 10
+4 + 5 + 3 = 12
+1 + 1 + 1 = 3
+3 + 3 + 4 = 10
+4 + 1 + 1 = 6
+1 + 5 + 3 = 9
+4 + 6 + 3 = 13
+5 + 6 + 6 = 17
+6 + 2 + 2 = 10
+6 + 5 + 1 = 12
+3 + 3 + 3 = 9
+5 + 4 + 5 = 14
+2 + 6 + 3 = 11
+3 + 1 + 5 = 9
+6 + 6 + 1 = 13
+4 + 2 + 4 = 10
+6 + 1 + 2 = 9
+1 + 6 + 1 = 8
+4 + 2 + 6 = 12
+3 + 6 + 5 = 14
+6 + 6 + 4 = 16
+5 + 5 + 1 = 11
+3 + 6 + 2 = 11
+5 + 5 + 4 = 14
+5 + 5 + 4 = 14
+3 + 4 + 2 = 9
+6 + 6 + 1 = 13
+2 + 3 + 3 = 8
+6 + 3 + 1 = 10
+3 + 3 + 5 = 11
+5 + 1 + 5 = 11
+6 + 3 + 2 = 11
+5 + 1 + 1 = 7
+2 + 4 + 6 = 12
+1 + 5 + 2 = 8
+1 + 4 + 1 = 6
+2 + 1 + 1 = 4
+1 + 1 + 5 = 7
+3 + 3 + 2 = 8
+2 + 4 + 3 = 9
+2 + 4 + 5 = 11
+6 + 3 + 2 = 11
+
+
+
+15-->1
+11-->10
+14-->6
+12--->5
+8-->5
+
+
+Histograms are very helpful to analyze large data sets.
+To plot histograms, we have to divide total input values into equal sized groups or bins.
+
+A bar is drawn for each bin. The height of each bar is porportional to the number of values related to that bar(bin or interval)
+
+By using hist() function, we can create histogram.
+
+Syntax:
+hist(x, bins=None, range=None, density=False, weights=None, cumulative=False, bottom=None, histtype='bar', align='mid', orientation='vertical', rwidth=None, log=False, color=None, label=None, stacked=False, *, data=None, **kwargs)
+    Plot a histogram.
+
+eg-1: To create histogram with 10000 samples from uniform distribution in the interval [0,1)
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+x = np.random.rand(10000)
+#plt.hist(x)
+#plt.hist(x,ec='yellow')
+xticks_l=[0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]
+plt.hist(x,bins=10,ec='yellow')
+plt.xticks(xticks_l)
+plt.show()
+
+
+eg-2: Rolling 3 dice experiment 
+import matplotlib.pyplot as plt
+import numpy as np
+l = []
+x = np.arange(1,19) #[1,2,3,...,18]
+for i in range(100000):
+	d1 = np.random.randint(1,7)
+	d2 = np.random.randint(1,7)
+	d3 = np.random.randint(1,7)
+	l.append(d1+d2+d3)
+plt.hist(l,bins=x,ec='yellow')
+plt.xticks(x)
+plt.grid(axis='y')
+plt.show()
+
+Histograms
+  --->Frequency Distributions
+  --->Large data sets
+  --->Each interval is nothing but bin
+  --->hist()
+  --->The default number of bins: 10
+
+How to change color of bars in histogram:
+-----------------------------------------
+We can specify our own customized color for the bars by using color argument.
+
+import matplotlib.pyplot as plt
+import numpy as np
+l = []
+x = np.arange(1,19) #[1,2,3,...,18]
+for i in range(100000):
+	d1 = np.random.randint(1,7)
+	d2 = np.random.randint(1,7)
+	d3 = np.random.randint(1,7)
+	l.append(d1+d2+d3)
+plt.hist(l,bins=x,color='r',ec='y')
+plt.xticks(x)
+plt.grid(axis='y')
+plt.show()
+
+How to change color of the bars in histogram:
+---------------------------------------------
+The hist() function returns the tuple of the following 3 values.
+
+1. n: The number of values present inside each bin
+
+
+array([    0.,     0.,   452.,  1399.,  2830.,  4673.,  7037.,  9656.,
+       11471., 12361., 12513., 11790.,  9737.,  6853.,  4646.,  2708.,
+        1874.])
+
+
+2. bins: The edges of bins
+array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
+       18])
+
+3. patches: BarContainer of individual artists used to create the histogram.
+<BarContainer object of 17 artists>)
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+l = []
+x = np.arange(1,19) #[1,2,3,...,18]
+for i in range(100000):
+	d1 = np.random.randint(1,7)
+	d2 = np.random.randint(1,7)
+	d3 = np.random.randint(1,7)
+	l.append(d1+d2+d3)
+x = plt.hist(l,bins=x,color='r',ec='y')
+print(type(x))
+print(len(x))
+print(x)
+
+
+D:\durgaclasses>py test.py
+<class 'tuple'>
+3
+(array([    0.,     0.,   452.,  1399.,  2830.,  4673.,  7037.,  9656.,
+       11471., 12361., 12513., 11790.,  9737.,  6853.,  4646.,  2708.,
+        1874.]), array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
+       18]), <BarContainer object of 17 artists>)
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+l = []
+x = np.arange(1,19) #[1,2,3,...,18]
+for i in range(100000):
+	d1 = np.random.randint(1,7)
+	d2 = np.random.randint(1,7)
+	d3 = np.random.randint(1,7)
+	l.append(d1+d2+d3)
+n,bins,patches = plt.hist(l,bins=x,color='r',ec='y')
+print('The number of values in each bin:',n)
+print('The edges of bins:',bins)
+print('The Patches-Container of artists:',patches)
+
+D:\durgaclasses>py test.py
+The number of values in each bin: [    0.     0.   441.  1390.  2627.  4586.  6921.  9875. 11524. 12481.
+ 12477. 11507.  9811.  7041.  4647.  2836.  1836.]
+The edges of bins: [ 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18]
+The Patches-Container of artists: <BarContainer object of 17 artists>
+
+
+
+
+To change color of first bar:
+-----------------------------
+n,bins,patches = plt.hist(l,bins=16,ec='y')
+plt.xticks(x)
+plt.grid(axis='y')
+#patches[0].set_facecolor('red')
+patches[0].set_fc('green')
+
+
+To change color of each bar:
+---------------------------
+import matplotlib.pyplot as plt
+import numpy as np
+l = []
+x = np.arange(1,19) #[1,2,3,...,18]
+for i in range(100000):
+	d1 = np.random.randint(1,7)
+	d2 = np.random.randint(1,7)
+	d3 = np.random.randint(1,7)
+	l.append(d1+d2+d3)
+n,bins,patches = plt.hist(l,bins=16,ec='y')
+print(n.size)
+print(bins.size)
+plt.xticks(x)
+plt.grid(axis='y')
+colors = ['r','g','orange','b','k','m','y','c','r','g','orange','b','k','m','y','c']
+#for i in range(n.size):
+for i in range(bins.size-1):
+	patches[i].set_facecolor(colors[i])
+plt.show()
+
+
+How to get real data sets:
+--------------------------
+We can download sample real data sets from the following link:
+kaggle.com
+
+TV Shows and Movies Listed on Netflix:
+--------------------------------------
+https://www.kaggle.com/shivamb/netflix-shows
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+import csv
+release_year_list=[]
+f = open('netflix_titles.csv','r',encoding='utf-8')
+r = csv.reader(f) #returns csvreader object
+header = next(r) #read header and ignore
+for row in r:
+	release_year_list.append(int(row[7]))
+unique_values = np.unique(release_year_list)
+plt.hist(release_year_list,bins = unique_values,ec='yellow')
+plt.xticks(unique_values)
+plt.show()
+
+
+------------------
+To consider only records where release year is from 2000 to 2021
+
+import matplotlib.pyplot as plt
+import numpy as np
+import csv
+release_year_list=[]
+f = open('netflix_titles.csv','r',encoding='utf-8')
+r = csv.reader(f) #returns csvreader object
+header = next(r) #read header and ignore
+for row in r:
+	release_year_list.append(int(row[7]))
+required_years = np.arange(2000,2022)
+plt.hist(release_year_list,bins = required_years,ec='yellow')
+plt.xticks(required_years,rotation=30)
+plt.show()
+
+
+
+Only india movies in the last 20 years:
+---------------------------------------
+import matplotlib.pyplot as plt
+import numpy as np
+import csv
+release_year_list=[]
+f = open('netflix_titles.csv','r',encoding='utf-8')
+r = csv.reader(f) #returns csvreader object
+header = next(r) #read header and ignore
+for row in r:
+	if row[5] == 'India':
+		release_year_list.append(int(row[7]))
+required_years = np.arange(2000,2022)
+plt.hist(release_year_list,bins = required_years,ec='yellow')
+plt.xticks(required_years,rotation=30)
+plt.show()
+
+---------------------------
+import matplotlib.pyplot as plt
+import numpy as np
+import csv
+release_year_list=[]
+f = open('netflix_titles.csv','r',encoding='utf-8')
+r = csv.reader(f) #returns csvreader object
+header = next(r) #read header and ignore
+for row in r:
+	release_year_list.append(int(row[7]))
+required_bins = [1900,2000,2010,2021]
+plt.hist(release_year_list,bins = required_bins,ec='yellow')
+plt.xticks(required_bins)
+plt.show()
